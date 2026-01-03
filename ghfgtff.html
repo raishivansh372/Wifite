@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ultimate BMW M5 Competition and M3 GTR Technical Showcase. Motorsport Heritage, Drift Culture &amp; Performance.">
+
+<title>BMW M-POWER | Heritage &amp; Performance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&amp;family=Inter:wght@300;400;600;900&amp;display=swap" rel="stylesheet">
+
+<!-- 3D MODEL VIEWER (NON-GITHUB CDN) -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<style>
+:root{
+ --m-blue:#0066b2;
+ --m-light:#00a0e3;
+ --m-red:#ff0000;
+ --bg:#050505;
+ --card:#111;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+ background:var(--bg);
+ color:#fff;
+ font-family:'Inter',sans-serif;
+ overflow-x:hidden;
+ scroll-behavior:smooth;
+}
+
+/* HEADER / LOGO */
+.header-3d{
+ height:180px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ background:radial-gradient(circle,#1a1a1a,#000);
+ border-bottom:1px solid #222;
+ perspective:1000px;
+}
+.logo-3d{
+ width:90px;
+ animation:logoFloat 6s ease-in-out infinite;
+ filter:drop-shadow(0 0 20px rgba(0,102,178,.7));
+}
+@keyframes logoFloat{
+ 0%{transform:rotateX(0) rotateY(0)}
+ 50%{transform:rotateX(8deg) rotateY(15deg)}
+ 100%{transform:rotateX(0) rotateY(0)}
+}
+
+/* NAV */
+nav{
+ position:sticky;
+ top:0;
+ background:rgba(0,0,0,.9);
+ backdrop-filter:blur(10px);
+ padding:15px 10%;
+ display:flex;
+ justify-content:space-between;
+ z-index:1000;
+ border-bottom:1px solid #333;
+}
+.nav-links a{
+ color:#888;
+ text-decoration:none;
+ margin-left:25px;
+ font-size:13px;
+ letter-spacing:1px;
+}
+.nav-links a:hover{color:var(--m-blue)}
+
+/* HERO */
+.hero{
+ position:relative;
+ height:85vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden;
+}
+.hero video{
+ position:absolute;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ filter:brightness(.5);
+}
+.hero-content{text-align:center;z-index:2}
+.hero-content h1{
+ font-family:'Syncopate',sans-serif;
+ font-size:clamp(2rem,8vw,5rem);
+ letter-spacing:10px;
+}
+
+/* CONTAINER */
+.container{padding:80px 10%}
+
+/* INFO BLOCK */
+.info-block{
+ max-width:900px;
+ margin-bottom:100px;
+}
+.info-block h2{
+ font-family:'Syncopate',sans-serif;
+ color:var(--m-blue);
+ margin-bottom:15px;
+}
+.info-block p{color:#bbb}
+
+/* CAR ROW */
+.car-row{
+ display:flex;
+ gap:50px;
+ margin-bottom:120px;
+ align-items:center;
+}
+.car-row.reverse{flex-direction:row-reverse}
+
+.video-wrapper{
+ flex:1.2;
+ border-radius:15px;
+ overflow:hidden;
+ box-shadow:0 25px 50px rgba(0,0,0,.5);
+ border:1px solid #333;
+}
+.video-wrapper video{width:100%}
+
+.info-panel{flex:1}
+.info-panel h2{
+ font-family:'Syncopate',sans-serif;
+ font-size:2.2rem;
+ color:var(--m-blue);
+ margin-bottom:15px;
+}
+
+/* TABLE */
+.specs-table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:20px;
+}
+.specs-table td{
+ padding:12px 0;
+ border-bottom:1px solid #222;
+}
+.specs-table td:last-child{
+ text-align:right;
+ color:var(--m-red);
+ font-weight:bold;
+}
+
+/* 3D */
+model-viewer{
+ width:100%;
+ height:420px;
+ background:#000;
+ border-radius:12px;
+}
+
+/* DASHBOARD */
+.dashboard{
+ display:flex;
+ gap:40px;
+ margin:60px 0;
+ flex-wrap:wrap;
+ align-items:center;
+}
+.speedometer{
+ width:220px;
+ height:220px;
+ border-radius:50%;
+ border:6px solid var(--m-blue);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ position:relative;
+}
+.speedometer span{
+ font-size:48px;
+ font-weight:900;
+}
+.speedometer::after{
+ content:"km/h";
+ position:absolute;
+ bottom:35px;
+ font-size:12px;
+ color:#aaa;
+}
+.rpm{
+ flex:1;
+ height:22px;
+ background:#222;
+ border-radius:20px;
+ overflow:hidden;
+}
+.rpm-fill{
+ height:100%;
+ width:0%;
+ background:linear-gradient(90deg,#0f0,#ff0,#f00);
+ transition:.2s;
+}
+
+/* BUTTON */
+.m-btn{
+ margin-top:15px;
+ padding:12px 30px;
+ background:var(--m-blue);
+ border:none;
+ color:#fff;
+ cursor:pointer;
+ font-weight:bold;
+}
+
+/* FOOTER */
+.footer-info{
+ background:#000;
+ padding:80px 10%;
+ text-align:center;
+ border-top:1px solid #222;
+}
+
+/* COOKIE */
+#cookie-banner{
+ position:fixed;
+ bottom:30px;
+ left:50%;
+ transform:translateX(-50%);
+ width:90%;
+ max-width:500px;
+ background:#111;
+ padding:20px;
+ border-radius:12px;
+ border:1px solid #333;
+ display:none;
+ z-index:10000;
+}
+.cookie-btn{
+ background:var(--m-blue);
+ color:#fff;
+ border:none;
+ padding:10px;
+ width:100%;
+ margin-top:15px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+ .car-row,.car-row.reverse{flex-direction:column}
+ model-viewer{height:300px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header-3d">
+ <img class="logo-3d" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/1024px-BMW.svg.png">
+ <p style="font-size:10px;letter-spacing:5px;color:#555">ESTABLISHED 1916</p>
+</div>
+
+<nav>
+ <div style="font-weight:900;letter-spacing:2px">
+ BMW <span style="color:var(--m-red)">M</span> PERFORMANCE
+ </div>
+ <div class="nav-links">
+  <a href="#philosophy">PHILOSOPHY</a>
+  <a href="#drift">DRIFT</a>
+  <a href="#experience">3D</a>
+  <a href="#m5">M5</a>
+  <a href="#m3">M3 GTR</a>
+ </div>
+</nav>
+
+<section class="hero">
+ <video autoplay muted loop>
+  <source src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-on-a-mountain-road-34504-large.mp4">
+ </video>
+ <div class="hero-content">
+  <h1>M-POWER</h1>
+  <p style="letter-spacing:8px;color:var(--m-light)">THE ULTIMATE DRIVING MACHINE</p>
+ </div>
+</section>
+
+<main class="container">
+
+<section class="info-block" id="philosophy">
+<h2>BMW M PHILOSOPHY</h2>
+<p>
+BMW M was created to transfer motorsport technology directly to road cars.
+Every M vehicle prioritizes mechanical balance, rear-wheel-drive character,
+limited-slip differentials, and driver control over raw straight-line numbers.
+</p>
+</section>
+
+<section class="info-block" id="drift">
+<h2>WHY BMW DOMINATES DRIFT CULTURE</h2>
+<p>
+BMW became the global benchmark for drifting due to near-perfect 50:50 weight distribution,
+predictable chassis behavior, smooth power delivery, and rear-wheel-drive platforms.
+These characteristics allow controlled oversteer, long sustained slides, and precise transitions.
+</p>
+</section>
+
+<section id="experience">
+<h2 style="font-family:Syncopate;color:var(--m-blue);margin-bottom:20px">3D BMW EXPERIENCE</h2>
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Car.glb" auto-rotate camera-controls>
+</model-viewer>
+</section>
+
+<div class="dashboard">
+ <div class="speedometer"><span id="speed">0</span></div>
+ <div class="rpm"><div class="rpm-fill" id="rpmFill"></div></div>
+</div>
+
+<section class="car-row" id="m5">
+<div class="video-wrapper">
+<video autoplay muted loop>
+<source src="https://assets.mixkit.co/videos/preview/mixkit-fast-driving-car-in-a-tunnel-34503-large.mp4">
+</video>
+</div>
+<div class="info-panel">
+<h2>M5 COMPETITION</h2>
+<p>
+A masterpiece of engineering. The M5 Competition delivers 625 HP through a specialized
+M xDrive system combining traction, control, and rear-biased performance.
+</p>
+<table class="specs-table">
+<tbody><tr><td>Engine</td><td>4.4L V8 Twin-Turbo</td></tr>
+<tr><td>0-100 km/h</td><td>3.3 Seconds</td></tr>
+<tr><td>Top Speed</td><td>305 km/h</td></tr>
+<tr><td>Drivetrain</td><td>M xDrive (AWD/RWD)</td></tr>
+</tbody></table>
+<button class="m-btn" onclick="rev()">REV ENGINE 🔊</button>
+</div>
+</section>
+
+<section class="car-row reverse" id="m3">
+<div class="video-wrapper">
+<video autoplay muted loop>
+<source src="https://assets.mixkit.co/videos/preview/mixkit-blue-car-parked-under-a-bridge-34501-large.mp4">
+</video>
+</div>
+<div class="info-panel">
+<h2>M3 GTR LEGEND</h2>
+<p>
+The icon of endurance racing. The E46 M3 GTR was the first M3 to house a V8 engine,
+designed specifically to dominate the American Le Mans Series.
+</p>
+<table class="specs-table">
+<tbody><tr><td>Engine</td><td>4.0L P60 V8</td></tr>
+<tr><td>Weight</td><td>1,350 kg</td></tr>
+<tr><td>Power</td><td>444 HP (Street)</td></tr>
+<tr><td>Status</td><td>Collector Icon</td></tr>
+</tbody></table>
+<p style="font-size:13px;color:#777;margin-top:10px">
+Motorsport Note: The dominance of the M3 GTR forced regulation changes after competitor protests.
+BMW withdrew the program, instantly cementing the M3 GTR as one of the most legendary race cars ever built.
+</p>
+<button class="m-btn" onclick="rev()">REV ENGINE 🔊</button>
+</div>
+</section>
+
+</main>
+
+<section class="footer-info">
+<h3>DEEP DIVE INTO M HERITAGE</h3>
+<p style="color:#666;margin-top:10px">For more information visit the official website</p>
+<a href="https://www.bmw.com" target="_blank" class="m-btn">OFFICIAL BMW WEBSITE</a>
+</section>
+
+<div id="cookie-banner">
+<p><strong>Cookie Policy</strong></p>
+<p style="font-size:12px;color:#888;margin-top:5px">
+This site uses cookies to optimize performance and analyze traffic to improve delivery.
+</p>
+<button class="cookie-btn" onclick="acceptCookies()">I ACCEPT ALL COOKIES</button>
+</div>
+
+<audio id="engineSound" src="https://assets.mixkit.co/sfx/preview/mixkit-race-car-start-1546.mp3"></audio>
+
+<script>
+let speed=0,rpm=0;
+function rev(){
+ document.getElementById("engineSound").play();
+ let i=setInterval(()=>{
+  speed=Math.min(speed+10,320);
+  rpm=Math.min(rpm+8,100);
+  document.getElementById("speed").innerText=speed;
+  document.getElementById("rpmFill").style.width=rpm+"%";
+  if(speed>=320){clearInterval(i)}
+ },120);
+}
+
+window.onload=()=>{
+ if(!localStorage.getItem("bmw_cookie")){
+  document.getElementById("cookie-banner").style.display="block";
+ }
+}
+function acceptCookies(){
+ localStorage.setItem("bmw_cookie","1");
+ document.getElementById("cookie-banner").style.display="none";
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+ a.addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:"smooth"});
+ });
+});
+</script>
+
+
+</body></html>
